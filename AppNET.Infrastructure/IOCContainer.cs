@@ -14,7 +14,7 @@
         { 
          if(container.ContainsKey(typeof(T))) //ContainsKey ve ContainsValue Dictionary den gelen methodlar..
                 container.Remove(typeof(T));   
-         container.Add(typeof(T),func );
+         container.Add(typeof(T),func);
                 
         }
              

@@ -1,7 +1,4 @@
-﻿using AppNET.Domain.Entities;
-using AppNET.Domain.Entities.Base;
-using AppNET.Domain.Interfaces;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace AppNET.Infrastructure.IOToTXT
 {
@@ -75,7 +72,7 @@ namespace AppNET.Infrastructure.IOToTXT
 
         public T Update(int id, T entity)
         {
-            if (id != entity.Id)
+            if (id!= entity.Id)
             
                 throw new ArgumentException("Id değerleri uyuşmuyor");
                 LoadListFromFile();

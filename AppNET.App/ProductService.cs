@@ -13,52 +13,51 @@ namespace AppNET.App
     public class ProductService : IProductService
     {
 
-        private readonly IRepository<Product> p_repository;
+        private readonly IRepository<Product> _productsRepository;
         public ProductService()
         {
-            p_repository = IOCContainer.Resolve<IRepository<Product>>();  //product _repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
+            _productsRepository = IOCContainer.Resolve<IRepository<Product>>();  //product repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
         }
-        public void Create(int id, string name, decimal price, int stock)
+        public void Create(int id, string name, decimal price, int stock, int categoryId)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException("Ürün adı boş olamaz.");
-            if (price <= 0)
-                throw new ArgumentOutOfRangeException("Ürün fiyatı 0 dan büyük olmalı.");
-            Product product = new Product();
-            product.Id = id;
-            product.Name = name;
-            product.Price = price;
-            product.Stock = stock;
-            product.CreatedDate= DateTime.Now;
-            product.UpdatedDate = DateTime.Now;
-            p_repository.Add(product);
+            //if (string.IsNullOrWhiteSpace(name))
+            //    throw new ArgumentNullException("Ürün adı boş olamaz.");
+            //if (price <= 0)
+            //    throw new ArgumentOutOfRangeException("Ürün fiyatı 0 dan büyük olmalı.");
+            Product product = new Product()
+            {
+                Id = id,
+                Name = name,
+                Price = price,
+                Stock = stock,
+                CategoryId = categoryId,
+                CreatedDate = DateTime.Now
+                //UpdatedDate = DateTime.Now;
+            };
+               _productsRepository.Add(product);
 
         }
 
-        public bool Delete(int id)
+        public bool Delete(int productId)
         {
-            return p_repository.Remove(id);
+        return _productsRepository.Remove(productId);
         }
 
         public IReadOnlyCollection<Product> GetAll()
         {
-            return p_repository.GetList().ToList().AsReadOnly();
+            return _productsRepository.GetList().ToList().AsReadOnly();
         }
 
-        public Product Update(int id, string newProductName,decimal newPrice, int newStock)
+        public Product Update(int productId, Product newProduct)
         {
-            if (string.IsNullOrWhiteSpace(newProductName))
-                throw new ArgumentNullException("Ürün adı boş olamaz.");
-            if (newStock < 0)
-                throw new ArgumentOutOfRangeException("Stok 0'dan küçük olamaz.");
-            if (newPrice<= 0)
-                throw new ArgumentOutOfRangeException("Fiyat 0'dan küçük veya eşit olamaz.");
-            var product = new Product();
-            product.Id = id;
-            product.Name = newProductName;
-            product.Price = newPrice;
-            product.Stock = newStock;
-            return p_repository.Update(id, product);
+        if (productId != newProduct.Id)
+            throw new ArgumentException("Product Id değerleri eşleşmiyor.");
+
+        Product oldProduct = _productRepository.GetById(productId);
+        if (oldProduct==null)
+            throw new Exception("Güncellenmek istenen ürün bulunamadı.");
+        newProduct.UpdatedDate = DateTime.Now;
+        return _productsRepository.Update(productId, newProduct);
         }
     }
 }

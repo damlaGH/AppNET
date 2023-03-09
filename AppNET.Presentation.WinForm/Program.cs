@@ -13,7 +13,8 @@ namespace AppNET.Presentation.WinForm
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            ApplicationServiceSettings.RegisterAllService(); //proje baþlamadan ne kadar back end servisimiz varsa kayýt etmiþ oluruz
+
+            ApplicationServiceSettings.RegisterAllService();
             Application.Run(new Form1());
         }
     }

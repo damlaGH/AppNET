@@ -1,4 +1,4 @@
-using AppNET.App;
+ï»¿using AppNET.App;
 using AppNET.Domain.Entities;
 using AppNET.Infrastructure;
 
@@ -21,17 +21,24 @@ namespace AppNET.Presentation.WinForm
         {
             grdProduct.DataSource = productService.GetAll();
         }
+        private void FillCategoryCbb()
+        {
+            cbbCategory.DataSource = categoryService.GetAll();
+            cbbCategory.DisplayMember = nameof(Category.Name);
+            cbbCategory.ValueMember = nameof(Category.Id); 
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             FillCategoryGrid();
             FillProductGrid();
+            FillCategoryCbb();
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
             if (btnSaveCategory.Text == "kaydet")
             {
-                int id = Convert.ToInt32(txtCategoryId.Text); //Textbox daki deðerler default olarak string olduðu için int e çevirdik çünkü Create metodu id yi int bekliyor
+                int id = Convert.ToInt32(txtCategoryId.Text); //Textbox daki deÄŸerler default olarak string olduÄŸu iÃ§in int e Ã§evirdik Ã§Ã¼nkÃ¼ Create metodu id yi int bekliyor
                 categoryService.Create(id, txtCategoryName.Text);
             }
             else 
@@ -49,8 +56,8 @@ namespace AppNET.Presentation.WinForm
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string categoryName = grdCategory.CurrentRow.Cells["Name"].Value.ToString();
-            DialogResult result= MessageBox.Show($"{categoryName} kategorisini silmek istediðinizden emin misiniz?",
-                "Silme Onayý", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"{categoryName} kategorisini silmek istediÄŸinizden emin misiniz?",
+                "Silme OnayÄ±", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 
             if (result == DialogResult.No)
@@ -61,7 +68,7 @@ namespace AppNET.Presentation.WinForm
             FillCategoryGrid();
         }
 
-        private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dÃ¼zenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string categoryName = grdCategory.CurrentRow.Cells["Name"].Value.ToString();
             string id = grdCategory.CurrentRow.Cells["Id"].Value.ToString();
@@ -69,8 +76,8 @@ namespace AppNET.Presentation.WinForm
             txtCategoryName.Text = categoryName;
 
             txtCategoryId.Enabled = false;
-            btnSaveCategory.Text = "Güncelle";
-            groupBox1.Text = "Kategori Güncelle";
+            btnSaveCategory.Text = "GÃ¼ncelle";
+            groupBox1.Text = "Kategori GÃ¼ncelle";
         }
 
        
@@ -79,35 +86,42 @@ namespace AppNET.Presentation.WinForm
         {
             if (button1.Text == "kaydet")
             {
-                int id = Convert.ToInt32(txtProductId.Text); //Textbox daki deðerler default olarak string olduðu için int e çevirdik çünkü Create metodu id yi int bekliyor
+                int id = Convert.ToInt32(txtProductId.Text); //Textbox daki deÄŸerler default olarak string olduÄŸu iÃ§in int e Ã§evirdik Ã§Ã¼nkÃ¼ Create metodu id yi int bekliyor
                 decimal price = Convert.ToDecimal(txtProductPrice.Text);
                 int stock = Convert.ToInt32(txtProductStock.Text);
-                
-                productService.Create(id, txtProductName.Text,price,stock);
+                int categoryId=Convert.ToInt32(txtCategoryId.Text); 
+                productService.Create(id, txtProductName.Text, price, stock, categoryId);
+                cbbCategory.SelectedIndex = 0;
             }
             else
             {
-                int id = Convert.ToInt32(txtProductId.Text); 
-                string newProductName = txtCategoryName.Text;
-                decimal newPrice = Convert.ToDecimal(txtProductPrice.Text);
-                int newStock = Convert.ToInt32(txtProductStock.Text);
-                productService.Update(id, newProductName, newPrice, newStock);
-                button1.Text = "kaydet";
-                groupBox2.Text = "Yeni Ürün";
-                txtProductId.Enabled = true;
+                int id = Convert.ToInt32(txtProductId.Text);
+                Product p = productService.GetAll().FirstOrDefault(x => x.Id == id);
+                p.Name = txtProductName.Text;
+                p.Stock = Convert.ToInt32(txtProductStock.Text);
+                p.Price = Convert.ToDecimal(txtProductPrice.Text);
+                p.CategoryId = Convert.ToInt32(cbbCategory.SelectedValue);
+                productService.Update(Convert.ToInt32(txtProductId.Text), p);
             }
-            txtProductId.Text = "";
-            txtProductName.Text = "";
-            txtProductPrice.Text = "";
-            txtProductStock.Text = "";
             FillProductGrid();
+               
+                button1.Text = "kaydet";
+                groupBox2.Text = "Yeni ÃœrÃ¼n";
+                txtProductId.Enabled = true;
+                txtProductId.Text = "";
+                txtProductName.Text = "";
+                txtProductPrice.Text = "";
+                txtProductStock.Text = "";
+                cbbCategory.SelectedIndex = 0;
+
+
         }
 
         private void silToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string productName = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
-            DialogResult result = MessageBox.Show($"{productName} ürününü silmek istediðinizden emin misiniz?",
-                "Silme Onayý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"{productName} Ã¼rÃ¼nÃ¼nÃ¼ silmek istediÄŸinizden emin misiniz?",
+                "Silme OnayÄ±", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 
             if (result == DialogResult.No)
@@ -118,21 +132,19 @@ namespace AppNET.Presentation.WinForm
             FillProductGrid();
         }
 
-        private void düzenleToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void dÃ¼zenleToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string productName = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
-            string id = grdProduct.CurrentRow.Cells["Id"].Value.ToString();
-            string productPrice = grdProduct.CurrentRow.Cells["Price"].Value.ToString();
-            string productStock = grdProduct.CurrentRow.Cells["Stock"].Value.ToString();
-            txtProductId.Text = id;
-            txtProductName.Text = productName;
-            txtProductPrice.Text = productPrice;
-            txtProductStock.Text = productStock;
-
+            txtProductName.Text = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
+            txtProductId.Text = grdProduct.CurrentRow.Cells["Id"].Value.ToString();
+            txtProductPrice.Text = grdProduct.CurrentRow.Cells["Price"].Value.ToString();
+            txtProductStock.Text = grdProduct.CurrentRow.Cells["Stock"].Value.ToString();
+           
             txtProductId.Enabled = false;
-            button1.Text = "Güncelle";
-            groupBox2.Text = "Ürünü Güncelle";
+            button1.Text = "GÃ¼ncelle";
+            groupBox2.Text = "ÃœrÃ¼nÃ¼ GÃ¼ncelle";
         }
+
+       
     }
     
 }

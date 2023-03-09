@@ -23,6 +23,11 @@ namespace AppNET.App
         {   
             if(string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException("Kategori adı boş olamaz.");
+
+            var oldCategory = _repository.GetList().FirstOrDefault(c => c.Name == name);
+            if (oldCategory != null)
+                return;
+
             Category category = new Category();
             category.Id = id;
             category.Name = name;
@@ -39,6 +44,15 @@ namespace AppNET.App
         {
             return _repository.GetList().ToList().AsReadOnly();
         }
+        public int GetIdFromName(string categoryName)
+        {
+            return _repository.GetList().FirstOrDefault(c => c.Name == categoryName).Id;
+        }
+        public Category GetById(int id)
+        {
+            return _repository.GetList().FirstOrDefault(c => c.Id == id);
+        }
+
 
         public Category Update(int categoryId, string newCategoryName)
         {
