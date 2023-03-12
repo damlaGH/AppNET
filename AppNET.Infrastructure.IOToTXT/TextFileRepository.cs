@@ -1,8 +1,12 @@
 ﻿using System.Text.Json;
+using AppNET.Domain.Interfaces;
+using AppNET.Domain.Entities;
+using AppNET.Domain.Entities.Base;
+
 
 namespace AppNET.Infrastructure.IOToTXT
 {
-    public class TextFileRepository<T>: IRepository<T> where T:BaseEntity
+    public class TextFileRepository<T> : IRepository<T> where T : BaseEntity
     {
         private static string FileName
         {
@@ -73,12 +77,12 @@ namespace AppNET.Infrastructure.IOToTXT
         public T Update(int id, T entity)
         {
             if (id!= entity.Id)
-            
                 throw new ArgumentException("Id değerleri uyuşmuyor");
+
                 LoadListFromFile();
                 var updated=list.FirstOrDefault(x=>x.Id== id);
                 if (updated == null)
-                  throw new ArgumentException("Güncellenecek varlık bulunamadı.");
+                  throw new Exception("Güncellenecek varlık bulunamadı.");
 
                 list.Remove(updated);
                 list.Add(entity);

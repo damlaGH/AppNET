@@ -169,7 +169,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(527, 24);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(295, 213);
+            this.groupBox2.Size = new System.Drawing.Size(648, 213);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Yeni Ürün";
@@ -181,7 +181,6 @@
             this.cbbCategory.Name = "cbbCategory";
             this.cbbCategory.Size = new System.Drawing.Size(121, 23);
             this.cbbCategory.TabIndex = 9;
-            
             // 
             // label7
             // 
@@ -222,7 +221,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(185, 181);
+            this.button1.Location = new System.Drawing.Point(419, 184);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -276,7 +275,7 @@
             this.grdProduct.RowHeadersVisible = false;
             this.grdProduct.RowTemplate.Height = 25;
             this.grdProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdProduct.Size = new System.Drawing.Size(295, 293);
+            this.grdProduct.Size = new System.Drawing.Size(648, 293);
             this.grdProduct.TabIndex = 8;
             // 
             // contextMenuStrip2

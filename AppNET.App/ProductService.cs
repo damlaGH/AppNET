@@ -23,7 +23,7 @@ namespace AppNET.App
             //if (string.IsNullOrWhiteSpace(name))
             //    throw new ArgumentNullException("Ürün adı boş olamaz.");
             //if (price <= 0)
-            //    throw new ArgumentOutOfRangeException("Ürün fiyatı 0 dan büyük olmalı.");
+            //    throw new ArgumentOutOfRangeException("Ürün fiyatı 0 dan büyük olmalı."); bu tip validasyonları burda uygulayabiliriz.
             Product product = new Product()
             {
                 Id = id,
@@ -40,8 +40,9 @@ namespace AppNET.App
 
         public bool Delete(int productId)
         {
-        return _productsRepository.Remove(productId);
+           return _productsRepository.Remove(productId);
         }
+       
 
         public IReadOnlyCollection<Product> GetAll()
         {
@@ -53,7 +54,7 @@ namespace AppNET.App
         if (productId != newProduct.Id)
             throw new ArgumentException("Product Id değerleri eşleşmiyor.");
 
-        Product oldProduct = _productRepository.GetById(productId);
+        Product oldProduct = _productsRepository.GetById(productId);
         if (oldProduct==null)
             throw new Exception("Güncellenmek istenen ürün bulunamadı.");
         newProduct.UpdatedDate = DateTime.Now;
