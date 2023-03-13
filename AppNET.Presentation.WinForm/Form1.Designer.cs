@@ -40,6 +40,8 @@
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbbShoppingType = new System.Windows.Forms.ComboBox();
+            this.txtShoppingType = new System.Windows.Forms.Label();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtProductPrice = new System.Windows.Forms.TextBox();
@@ -55,12 +57,14 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.silToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.grdShopping = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -156,6 +160,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbbShoppingType);
+            this.groupBox2.Controls.Add(this.txtShoppingType);
             this.groupBox2.Controls.Add(this.cbbCategory);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtProductPrice);
@@ -167,12 +173,33 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(527, 24);
+            this.groupBox2.Location = new System.Drawing.Point(328, 24);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(648, 213);
+            this.groupBox2.Size = new System.Drawing.Size(457, 213);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Yeni Ürün";
+            // 
+            // cbbShoppingType
+            // 
+            this.cbbShoppingType.FormattingEnabled = true;
+            this.cbbShoppingType.Items.AddRange(new object[] {
+            "buy",
+            "sell"});
+            this.cbbShoppingType.Location = new System.Drawing.Point(139, 181);
+            this.cbbShoppingType.Name = "cbbShoppingType";
+            this.cbbShoppingType.Size = new System.Drawing.Size(121, 23);
+            this.cbbShoppingType.TabIndex = 12;
+            this.cbbShoppingType.TabStop = false;
+            // 
+            // txtShoppingType
+            // 
+            this.txtShoppingType.AutoSize = true;
+            this.txtShoppingType.Location = new System.Drawing.Point(24, 184);
+            this.txtShoppingType.Name = "txtShoppingType";
+            this.txtShoppingType.Size = new System.Drawing.Size(70, 15);
+            this.txtShoppingType.TabIndex = 11;
+            this.txtShoppingType.Text = "Alışveriş tipi";
             // 
             // cbbCategory
             // 
@@ -221,7 +248,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(419, 184);
+            this.button1.Location = new System.Drawing.Point(334, 190);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -270,12 +297,12 @@
             this.grdProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdProduct.ContextMenuStrip = this.contextMenuStrip2;
-            this.grdProduct.Location = new System.Drawing.Point(527, 243);
+            this.grdProduct.Location = new System.Drawing.Point(328, 243);
             this.grdProduct.Name = "grdProduct";
             this.grdProduct.RowHeadersVisible = false;
             this.grdProduct.RowTemplate.Height = 25;
             this.grdProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdProduct.Size = new System.Drawing.Size(648, 293);
+            this.grdProduct.Size = new System.Drawing.Size(457, 293);
             this.grdProduct.TabIndex = 8;
             // 
             // contextMenuStrip2
@@ -300,11 +327,25 @@
             this.düzenleToolStripMenuItem1.Text = "Düzenle";
             this.düzenleToolStripMenuItem1.Click += new System.EventHandler(this.düzenleToolStripMenuItem1_Click);
             // 
+            // grdShopping
+            // 
+            this.grdShopping.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdShopping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdShopping.ContextMenuStrip = this.contextMenuStrip2;
+            this.grdShopping.Location = new System.Drawing.Point(822, 243);
+            this.grdShopping.Name = "grdShopping";
+            this.grdShopping.RowHeadersVisible = false;
+            this.grdShopping.RowTemplate.Height = 25;
+            this.grdShopping.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdShopping.Size = new System.Drawing.Size(457, 293);
+            this.grdShopping.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 647);
+            this.Controls.Add(this.grdShopping);
             this.Controls.Add(this.grdProduct);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grdCategory);
@@ -320,6 +361,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,5 +395,8 @@
         private ToolStripMenuItem düzenleToolStripMenuItem1;
         private Label label7;
         private ComboBox cbbCategory;
+        private ComboBox cbbShoppingType;
+        private Label txtShoppingType;
+        private DataGridView grdShopping;
     }
 }

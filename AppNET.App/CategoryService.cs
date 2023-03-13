@@ -13,44 +13,44 @@ namespace AppNET.App
 {
     public class CategoryService : ICategoryService
     {
-
-        private readonly IRepository<Category> _repository;
+        private List<Product> liste = new List<Product>();
+        private readonly IRepository<Category> _categoryRepository;
         public CategoryService()
         {
-            _repository=IOCContainer.Resolve<IRepository<Category>>();  //category _repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
+            _categoryRepository=IOCContainer.Resolve<IRepository<Category>>();  //category _repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
         }
         public void Create(int id, string name)
         {   
             if(string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException("Kategori adı boş olamaz.");
 
-            var oldCategory = _repository.GetList().FirstOrDefault(c => c.Name == name);
+            var oldCategory = _categoryRepository.GetList().FirstOrDefault(c => c.Name == name);
             if (oldCategory != null)
                 return;
 
             Category category = new Category();
             category.Id = id;
             category.Name = name;
-            _repository.Add(category);
+            _categoryRepository.Add(category);
 
         }
 
         public bool Delete(int categoryId)
         {
-            return _repository.Remove(categoryId);
+            return _categoryRepository.Remove(categoryId);
         }
 
         public IReadOnlyCollection<Category> GetAll()
         {
-            return _repository.GetList().ToList().AsReadOnly();
+            return _categoryRepository.GetList().ToList().AsReadOnly();
         }
         public int GetIdFromName(string categoryName)
         {
-            return _repository.GetList().FirstOrDefault(c => c.Name == categoryName).Id;
+            return _categoryRepository.GetList().FirstOrDefault(c => c.Name == categoryName).Id;
         }
         public Category GetById(int id)
         {
-            return _repository.GetList().FirstOrDefault(c => c.Id == id);
+            return _categoryRepository.GetList().FirstOrDefault(c => c.Id == id);
         }
 
 
@@ -61,7 +61,7 @@ namespace AppNET.App
             var category= new Category();
             category.Id=categoryId;
             category.Name=newCategoryName;
-            return _repository.Update(categoryId, category);
+            return _categoryRepository.Update(categoryId, category);   // categoryId: güncellenecek kategori Id si, category ise güncellenen kategori
         }
     }
 }

@@ -18,12 +18,12 @@ namespace AppNET.App
         {
             _productsRepository = IOCContainer.Resolve<IRepository<Product>>();  //product repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
         }
-        public void Create(int id, string name, decimal price, int stock, int categoryId)
+        public void Create(int id, string name, decimal price, int stock, int categoryId, decimal buyPrice, decimal sellPrice)
         {
-            //if (string.IsNullOrWhiteSpace(name))
-            //    throw new ArgumentNullException("Ürün adı boş olamaz.");
-            //if (price <= 0)
-            //    throw new ArgumentOutOfRangeException("Ürün fiyatı 0 dan büyük olmalı."); bu tip validasyonları burda uygulayabiliriz.
+            if (id == null)
+                throw new ArgumentException("Id değeri boş olamaz");
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Kategori adı boş olamaz");
             Product product = new Product()
             {
                 Id = id,
@@ -31,6 +31,8 @@ namespace AppNET.App
                 Price = price,
                 Stock = stock,
                 CategoryId = categoryId,
+                BuyPrice=buyPrice,
+                SellPrice=sellPrice,
                 CreatedDate = DateTime.Now
                 //UpdatedDate = DateTime.Now;
             };
@@ -42,8 +44,7 @@ namespace AppNET.App
         {
            return _productsRepository.Remove(productId);
         }
-       
-
+        
         public IReadOnlyCollection<Product> GetAll()
         {
             return _productsRepository.GetList().ToList().AsReadOnly();

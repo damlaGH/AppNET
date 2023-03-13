@@ -13,7 +13,9 @@ namespace AppNET.Presentation.WinForm
         }
         ICategoryService categoryService = IOCContainer.Resolve<ICategoryService>();
         IProductService productService = IOCContainer.Resolve<IProductService>();
-
+        IInvoiceService invoiceService = IOCContainer.Resolve<IInvoiceService>();
+        CashService cashService = IOCContainer.Resolve<CashService>();
+        ShoppingService shoppingService = IOCContainer.Resolve<ShoppingService>();
         private void FillCategoryGrid()
         {
             grdCategory.DataSource = categoryService.GetAll();
@@ -28,12 +30,17 @@ namespace AppNET.Presentation.WinForm
             cbbCategory.DisplayMember = nameof(Category.Name);
             cbbCategory.ValueMember = nameof(Category.Id); 
         }
+        private void FillInvoiceGrid()
+        {
+            grdShopping.DataSource = invoiceService.GetAll();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             FillCategoryGrid();
             FillProductGrid();
             FillCategoryCbb();
+            FillInvoiceGrid();
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -119,7 +126,9 @@ namespace AppNET.Presentation.WinForm
                 // productService.Create(id, txtProductName.Text, price, stock, categoryId);
                 //cbbCategory.SelectedIndex = 0;
                 int selectedValue = Convert.ToInt32(cbbCategory.SelectedValue);
-                productService.Create(id, txtProductName.Text, price, stock,selectedValue);
+                decimal buyPrice= Convert.ToDecimal(txtProductPrice);
+                decimal sellPrice = Convert.ToDecimal(txtProductPrice);
+                productService.Create(id, txtProductName.Text, price,stock,selectedValue,buyPrice,sellPrice);
 
             }
             else
