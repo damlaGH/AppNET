@@ -19,28 +19,23 @@ namespace AppNET.App
         {
             invoiceService = IOCContainer.Resolve<InvoiceService>();
             _invoiceRepository = IOCContainer.Resolve<IRepository<Invoice>>();
+
         }
 
-        public void SaveInvoiceToCash(Invoice invoice)
+        public IReadOnlyCollection<Invoice> IncomeInvoice(Func<Invoice, bool> expression = null)
         {
-            Cash cash = new Cash();
-            decimal totalAmount = invoice.TotalAmount;
-
-            if (invoice.typeOfProcess==TypeOfProcess.Income)
-                cash.Balance += invoice.TotalAmount;
-            else
-                cash.Balance -= invoice.TotalAmount;
+            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Income).ToList().AsReadOnly();
         }
-
-        public List<Invoice> AddInvoiceToCashList(Invoice invoice)
+        public IReadOnlyCollection<Invoice> OutcomeInvoice(Func<Invoice, bool> expression = null)
         {
-            Cash cash = new Cash();
-            List<Invoice> listOfInvoice = new List<Invoice>();
-
-            listOfInvoice.Add(invoice);
-
-            return cash.Invoices = listOfInvoice;
+            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Outcome).ToList().AsReadOnly();
         }
+        public decimal Balance()
+        {
+            return IncomeInvoice().Sum(i => i.TotalAmount) - OutcomeInvoice().Sum(e => e.TotalAmount);
+        }
+
+          
 
     }
 }

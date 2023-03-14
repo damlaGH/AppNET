@@ -26,25 +26,25 @@ namespace AppNET.App
             if (invoiceNumber == null)
                 throw new Exception("Fatura numarası boş olamaz");
             //if(Invoice.TypeOfProcess==null)
-            //    throw new Exception("Lütfen geçerli bir işlem tipi giriniz:");
+            //    throw new Exception("Lütfen geçerli bir işlem tipi giriniz:");          enum tiplerde nullcheck??
             //if ((string.IsNullOrEmpty(process.ToString())==null)
             //    throw new Exception("Lütfen geçerli bir işlem tipi giriniz:");
             Invoice invoice = new Invoice()
             {
                 InvoiceNumber = invoiceNumber,
-                TotalAmount=totalAmount,
-                Explanation=explanation,
-                typeOfProcess=process,
+                TotalAmount = totalAmount,
+                Explanation = explanation,
+                typeOfProcess = process,
                 dateTime = DateTime.Now
                 //UpdatedDate = DateTime.Now;
             };
             _invoiceRepository.Add(invoice);
         }
 
-       
+
         public bool Delete(int InvoiceNumber)
         {
-           return _invoiceRepository.Remove(InvoiceNumber);
+            return _invoiceRepository.Remove(InvoiceNumber);
         }
 
         public IReadOnlyCollection<Invoice> GetAll()
@@ -54,13 +54,14 @@ namespace AppNET.App
 
         public Invoice Update(int InvoiceNumber, Invoice newInvoice)
         {
-            if(InvoiceNumber!=newInvoice.Id)
+            if (InvoiceNumber != newInvoice.Id)
                 throw new ArgumentException("Invoice number değerleri eşleşmiyor");
             Invoice oldInvoice = _invoiceRepository.GetById(InvoiceNumber);
-            if(oldInvoice==null)
+            if (oldInvoice == null)
                 throw new Exception("Güncellenmek istenen fatura bulunamadı.");
             return _invoiceRepository.Update(InvoiceNumber, newInvoice);
         }
-    }
+
+        }
 }
 

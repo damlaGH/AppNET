@@ -36,9 +36,16 @@ namespace AppNET.App
             };
             if (StockControlForSale(id, stock))
             {
-                var currentStock = _productsRepository.GetList().FirstOrDefault(p => p.Id == soldProduct.Id);
-                currentStock.Stock -= soldProduct.Stock;
-               
+                soldProduct.Stock -= soldProduct.Stock;
+                soldProduct.UpdatedDate = DateTime.Now;
+                // int invoiceNumber = Convert.ToInt32($"{soldProduct.Id}  EŞSİZ FATURA NUMARASI ÜRETEN BİŞEY YAZMAN LAZIM!
+                invoiceService.Create(1,
+                    stock * sellPrice,
+                    $"{soldProduct.Id} id'li üründen {soldProduct.Stock} adet satıldı. Toplam tutar: {stock * sellPrice}",
+                    TypeOfProcess.Outcome,
+                    DateTime.Now);
+               //burda oluşturulan invoice ve o da invoice repo ya kaydediliyor ??
+                            
             }
             else
                 throw new Exception("İşlem başarısız");
@@ -46,24 +53,45 @@ namespace AppNET.App
 
         public void BuyProduct(int id, string name, int stock, decimal buyPrice)
         {
-            Product buyProduct = new Product();
-            Invoice outcomeInvoice = new Invoice();
-            buyProduct = _productsRepository.GetList().FirstOrDefault(p => p.Id == Id);
-            //if (buyProduct != null)
-            //{
-            //    productService.Update(int productId, Product buyProduct);
-            //    //cashService.OutcomeInvoice(id, stock, buyPrice)
-            //}
-            //else
-                //productService.Create(int id, string name, decimal price, int stock, int categoryId, decimal buyPrice, decimal sellPrice);
+            Product buyProduct = new Product()
+            {
+                Id = id,
+                Name = name,
+                Stock = stock,            //burayı her new ile türettiğimizde yazmamız gerekmiyor??
+                BuyPrice = buyPrice,
 
+            };
+
+            buyProduct = _productsRepository.GetList().FirstOrDefault(p => p.Id == id);
+            if (buyProduct != null)
+            {
+                if (cashService.Balance() >= stock * buyPrice)
+                {
+                    buyProduct.Stock += buyProduct.Stock;
+                    buyProduct.UpdatedDate = DateTime.Now;
+                    invoiceService.Create(1,
+                        stock * buyPrice,
+                        $"{buyProduct.Id} id'li üründen {buyProduct.Stock} adet satıldı. Toplam tutar: {stock * buyPrice}",
+                        TypeOfProcess.Income,
+                        DateTime.Now);
+                }
+                else
+                    throw new Exception("Bakiye yetersiz!");
+            }
+
+            else
+            {
+                throw new Exception("Yeni ürün kaydı yapınız:");
+                //productService.Create(id,name,stock,categoryId,buyPrice,sellPrice);   categoryId ve sellPrice i olmadığı için hata veriyor??
+
+            }
         }
 
         public bool StockControlForSale(int id, int sellAmount)
         {
             Product controlProduct = new Product();
            
-            controlProduct=_productsRepository.GetList().FirstOrDefault(p=>p.Id == Id);
+            controlProduct=_productsRepository.GetList().FirstOrDefault(p=>p.Id == id);
             if (sellAmount > controlProduct.Stock)
             {
                 throw new Exception($"Stokta {controlProduct.Stock} kadar ürün vardır");
@@ -71,6 +99,8 @@ namespace AppNET.App
             }
             else
                 return true;
-        }  
+        }
+
+       
     }
 }

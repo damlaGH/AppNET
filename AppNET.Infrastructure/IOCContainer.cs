@@ -6,8 +6,15 @@
 
         private static readonly Dictionary<Type, Func<object>> container = new Dictionary<Type,Func<object>>();  //Dictionary nin diğer generic tiplerden farkı içine TKey ve TValue oü iki tip alması
         public static T Resolve<T>()
-        { 
-            return (T)container[typeof(T)]();  //parametre olarak verdiğimiz key in değerini döndürdüğümüz için [key] dedik 
+        {
+
+            //var keyTipi = typeof(T);
+            //var metot = container[keyTipi];
+            //var nesne = metot();
+            //var donusTipi = (T)nesne;
+            //return donusTipi;
+
+            return (T)container[typeof(T)](); //parametre olarak verdiğimiz key in değerini döndürdüğümüz için [key] dedik 
         }
 
         public static void Register<T>(Func<object>func)  

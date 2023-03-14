@@ -40,8 +40,6 @@
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbbShoppingType = new System.Windows.Forms.ComboBox();
-            this.txtShoppingType = new System.Windows.Forms.Label();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtProductPrice = new System.Windows.Forms.TextBox();
@@ -58,6 +56,18 @@
             this.silToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.grdShopping = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -65,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -160,8 +171,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cbbShoppingType);
-            this.groupBox2.Controls.Add(this.txtShoppingType);
             this.groupBox2.Controls.Add(this.cbbCategory);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtProductPrice);
@@ -179,27 +188,6 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Yeni Ürün";
-            // 
-            // cbbShoppingType
-            // 
-            this.cbbShoppingType.FormattingEnabled = true;
-            this.cbbShoppingType.Items.AddRange(new object[] {
-            "buy",
-            "sell"});
-            this.cbbShoppingType.Location = new System.Drawing.Point(139, 181);
-            this.cbbShoppingType.Name = "cbbShoppingType";
-            this.cbbShoppingType.Size = new System.Drawing.Size(121, 23);
-            this.cbbShoppingType.TabIndex = 12;
-            this.cbbShoppingType.TabStop = false;
-            // 
-            // txtShoppingType
-            // 
-            this.txtShoppingType.AutoSize = true;
-            this.txtShoppingType.Location = new System.Drawing.Point(24, 184);
-            this.txtShoppingType.Name = "txtShoppingType";
-            this.txtShoppingType.Size = new System.Drawing.Size(70, 15);
-            this.txtShoppingType.TabIndex = 11;
-            this.txtShoppingType.Text = "Alışveriş tipi";
             // 
             // cbbCategory
             // 
@@ -248,7 +236,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(334, 190);
+            this.button1.Location = new System.Drawing.Point(139, 184);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -340,11 +328,123 @@
             this.grdShopping.Size = new System.Drawing.Size(457, 293);
             this.grdShopping.TabIndex = 9;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Location = new System.Drawing.Point(831, 24);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(457, 213);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Yeni Ürün";
+            
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(139, 152);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 9;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(24, 160);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 15);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Kategori Id";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(139, 126);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 9;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(139, 97);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.TabIndex = 8;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(139, 66);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 23);
+            this.textBox3.TabIndex = 7;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(139, 32);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 23);
+            this.textBox4.TabIndex = 6;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(139, 184);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "kaydet";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(24, 128);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 15);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Fiyatı";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(24, 97);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 15);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Stok Adedi";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(24, 66);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 15);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Ürün Adı";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(24, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 15);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Ürün Id";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1351, 647);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grdShopping);
             this.Controls.Add(this.grdProduct);
             this.Controls.Add(this.groupBox2);
@@ -362,6 +462,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -395,8 +497,18 @@
         private ToolStripMenuItem düzenleToolStripMenuItem1;
         private Label label7;
         private ComboBox cbbCategory;
-        private ComboBox cbbShoppingType;
-        private Label txtShoppingType;
         private DataGridView grdShopping;
+        private GroupBox groupBox3;
+        private ComboBox comboBox1;
+        private Label label8;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private TextBox textBox4;
+        private Button button2;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
     }
 }
