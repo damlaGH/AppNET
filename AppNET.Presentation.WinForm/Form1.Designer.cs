@@ -40,40 +40,35 @@
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.düzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtProductSellPrice = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtProductPrice = new System.Windows.Forms.TextBox();
             this.txtProductStock = new System.Windows.Forms.TextBox();
+            this.txtProductBuyPrice = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductId = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.silToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.düzenleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.satToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.grdProduct = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.silToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.düzenleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.grdShopping = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.txtShowBalance = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -171,28 +166,55 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtProductSellPrice);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.cbbCategory);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.txtProductPrice);
             this.groupBox2.Controls.Add(this.txtProductStock);
+            this.groupBox2.Controls.Add(this.txtProductBuyPrice);
             this.groupBox2.Controls.Add(this.txtProductName);
             this.groupBox2.Controls.Add(this.txtProductId);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(328, 24);
+            this.groupBox2.Location = new System.Drawing.Point(328, 18);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(457, 213);
+            this.groupBox2.Size = new System.Drawing.Size(457, 219);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Yeni Ürün";
+            this.groupBox2.Text = "Alışveriş";
+            // 
+            // txtProductSellPrice
+            // 
+            this.txtProductSellPrice.Location = new System.Drawing.Point(332, 131);
+            this.txtProductSellPrice.Name = "txtProductSellPrice";
+            this.txtProductSellPrice.Size = new System.Drawing.Size(100, 23);
+            this.txtProductSellPrice.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(264, 134);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Satış Fiyatı";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(24, 130);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 15);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Alış Fiyatı";
             // 
             // cbbCategory
             // 
             this.cbbCategory.FormattingEnabled = true;
-            this.cbbCategory.Location = new System.Drawing.Point(139, 152);
+            this.cbbCategory.Location = new System.Drawing.Point(139, 155);
             this.cbbCategory.Name = "cbbCategory";
             this.cbbCategory.Size = new System.Drawing.Size(121, 23);
             this.cbbCategory.TabIndex = 9;
@@ -200,18 +222,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 160);
+            this.label7.Location = new System.Drawing.Point(24, 158);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 15);
             this.label7.TabIndex = 10;
             this.label7.Text = "Kategori Id";
-            // 
-            // txtProductPrice
-            // 
-            this.txtProductPrice.Location = new System.Drawing.Point(139, 126);
-            this.txtProductPrice.Name = "txtProductPrice";
-            this.txtProductPrice.Size = new System.Drawing.Size(100, 23);
-            this.txtProductPrice.TabIndex = 9;
             // 
             // txtProductStock
             // 
@@ -219,6 +234,13 @@
             this.txtProductStock.Name = "txtProductStock";
             this.txtProductStock.Size = new System.Drawing.Size(100, 23);
             this.txtProductStock.TabIndex = 8;
+            // 
+            // txtProductBuyPrice
+            // 
+            this.txtProductBuyPrice.Location = new System.Drawing.Point(139, 126);
+            this.txtProductBuyPrice.Name = "txtProductBuyPrice";
+            this.txtProductBuyPrice.Size = new System.Drawing.Size(100, 23);
+            this.txtProductBuyPrice.TabIndex = 9;
             // 
             // txtProductName
             // 
@@ -236,22 +258,44 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(139, 184);
+            this.button1.ContextMenuStrip = this.contextMenuStrip2;
+            this.button1.Location = new System.Drawing.Point(139, 190);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "kaydet";
+            this.button1.Text = "al";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label6
+            // contextMenuStrip2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 128);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 15);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Fiyatı";
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.silToolStripMenuItem1,
+            this.düzenleToolStripMenuItem1,
+            this.satToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(117, 70);
+            // 
+            // silToolStripMenuItem1
+            // 
+            this.silToolStripMenuItem1.Name = "silToolStripMenuItem1";
+            this.silToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            this.silToolStripMenuItem1.Text = "Sil";
+            this.silToolStripMenuItem1.Click += new System.EventHandler(this.silToolStripMenuItem1_Click);
+            // 
+            // düzenleToolStripMenuItem1
+            // 
+            this.düzenleToolStripMenuItem1.Name = "düzenleToolStripMenuItem1";
+            this.düzenleToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            this.düzenleToolStripMenuItem1.Text = "Düzenle";
+            this.düzenleToolStripMenuItem1.Click += new System.EventHandler(this.düzenleToolStripMenuItem1_Click);
+            // 
+            // satToolStripMenuItem
+            // 
+            this.satToolStripMenuItem.Name = "satToolStripMenuItem";
+            this.satToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.satToolStripMenuItem.Text = "Sat";
+            this.satToolStripMenuItem.Click += new System.EventHandler(this.satToolStripMenuItem_Click);
             // 
             // label5
             // 
@@ -293,34 +337,11 @@
             this.grdProduct.Size = new System.Drawing.Size(457, 293);
             this.grdProduct.TabIndex = 8;
             // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.silToolStripMenuItem1,
-            this.düzenleToolStripMenuItem1});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(117, 48);
-            // 
-            // silToolStripMenuItem1
-            // 
-            this.silToolStripMenuItem1.Name = "silToolStripMenuItem1";
-            this.silToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.silToolStripMenuItem1.Text = "Sil";
-            this.silToolStripMenuItem1.Click += new System.EventHandler(this.silToolStripMenuItem1_Click);
-            // 
-            // düzenleToolStripMenuItem1
-            // 
-            this.düzenleToolStripMenuItem1.Name = "düzenleToolStripMenuItem1";
-            this.düzenleToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.düzenleToolStripMenuItem1.Text = "Düzenle";
-            this.düzenleToolStripMenuItem1.Click += new System.EventHandler(this.düzenleToolStripMenuItem1_Click);
-            // 
             // grdShopping
             // 
             this.grdShopping.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdShopping.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdShopping.ContextMenuStrip = this.contextMenuStrip2;
-            this.grdShopping.Location = new System.Drawing.Point(822, 243);
+            this.grdShopping.Location = new System.Drawing.Point(831, 243);
             this.grdShopping.Name = "grdShopping";
             this.grdShopping.RowHeadersVisible = false;
             this.grdShopping.RowTemplate.Height = 25;
@@ -330,114 +351,41 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBox1);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.textBox4);
             this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.txtShowBalance);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(831, 24);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(457, 213);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Yeni Ürün";
-            
+            this.groupBox3.Text = "Kasa İşlemleri";
             // 
-            // comboBox1
+            // txtShowBalance
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(139, 152);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 160);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 15);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Kategori Id";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(139, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 9;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(139, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 8;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(139, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
-            this.textBox3.TabIndex = 7;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(139, 32);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 23);
-            this.textBox4.TabIndex = 6;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(139, 184);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "kaydet";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(24, 128);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 15);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Fiyatı";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(24, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 15);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Stok Adedi";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(24, 66);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 15);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Ürün Adı";
+            this.txtShowBalance.Location = new System.Drawing.Point(139, 32);
+            this.txtShowBalance.Name = "txtShowBalance";
+            this.txtShowBalance.Size = new System.Drawing.Size(100, 23);
+            this.txtShowBalance.TabIndex = 6;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(24, 32);
+            this.label12.Location = new System.Drawing.Point(24, 35);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(46, 15);
+            this.label12.Size = new System.Drawing.Size(41, 15);
             this.label12.TabIndex = 1;
-            this.label12.Text = "Ürün Id";
+            this.label12.Text = "Bakiye";
+            // 
+            // button2
+            // 
+            this.button2.ContextMenuStrip = this.contextMenuStrip2;
+            this.button2.Location = new System.Drawing.Point(139, 169);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "getir";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -459,8 +407,8 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdShopping)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -484,11 +432,9 @@
         private GroupBox groupBox2;
         private Label label3;
         private Button button1;
-        private TextBox txtProductPrice;
         private TextBox txtProductStock;
         private TextBox txtProductName;
         private TextBox txtProductId;
-        private Label label6;
         private Label label5;
         private Label label4;
         private DataGridView grdProduct;
@@ -499,16 +445,13 @@
         private ComboBox cbbCategory;
         private DataGridView grdShopping;
         private GroupBox groupBox3;
-        private ComboBox comboBox1;
-        private Label label8;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private Button button2;
-        private Label label9;
-        private Label label10;
-        private Label label11;
+        private TextBox txtProductBuyPrice;
+        private TextBox txtShowBalance;
         private Label label12;
+        private Label label9;
+        private TextBox txtProductSellPrice;
+        private Label label6;
+        private ToolStripMenuItem satToolStripMenuItem;
+        private Button button2;
     }
 }

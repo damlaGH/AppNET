@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AppNET.App
 {
-    public class CashService
+    public class CashService: ICashService
     {
         private readonly IRepository<Invoice> _invoiceRepository;
         private readonly InvoiceService invoiceService;
@@ -21,22 +21,23 @@ namespace AppNET.App
             _invoiceRepository = IOCContainer.Resolve<IRepository<Invoice>>();
 
         }
+        //public IReadOnlyCollection<Invoice> FilterByDate(Func<Invoice, bool> expression = null)
+        //{
+        //    DateTime startDate = new DateTime();
+        //    DateTime endDate = new DateTime();
+        //    var invoices = _invoiceRepository.Where(invoice => invoice.Date >= startDate && invoice.Date <= endDate);
+        //    return invoices;
+        //}
 
-        public IReadOnlyCollection<Invoice> IncomeInvoice(Func<Invoice, bool> expression = null)
+      
+        public decimal ShowBalance()
         {
-            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Income).ToList().AsReadOnly();
-        }
-        public IReadOnlyCollection<Invoice> OutcomeInvoice(Func<Invoice, bool> expression = null)
-        {
-            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Outcome).ToList().AsReadOnly();
-        }
-        public decimal Balance()
-        {
-            return IncomeInvoice().Sum(i => i.TotalAmount) - OutcomeInvoice().Sum(e => e.TotalAmount);
+            return invoiceService.IncomeInvoice().Sum(i => i.TotalAmount) - invoiceService.OutcomeInvoice().Sum(e => e.TotalAmount);
         }
 
-          
 
+
+      
     }
 }
 

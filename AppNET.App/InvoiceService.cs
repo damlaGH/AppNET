@@ -21,14 +21,12 @@ namespace AppNET.App
         {
             _invoiceRepository = IOCContainer.Resolve<IRepository<Invoice>>();
         }
+       
         public void Create(int invoiceNumber, decimal totalAmount, string explanation, TypeOfProcess process, DateTime dateTime)
         {
             if (invoiceNumber == null)
                 throw new Exception("Fatura numarası boş olamaz");
-            //if(Invoice.TypeOfProcess==null)
-            //    throw new Exception("Lütfen geçerli bir işlem tipi giriniz:");          enum tiplerde nullcheck??
-            //if ((string.IsNullOrEmpty(process.ToString())==null)
-            //    throw new Exception("Lütfen geçerli bir işlem tipi giriniz:");
+            
             Invoice invoice = new Invoice()
             {
                 InvoiceNumber = invoiceNumber,
@@ -36,7 +34,7 @@ namespace AppNET.App
                 Explanation = explanation,
                 typeOfProcess = process,
                 dateTime = DateTime.Now
-                //UpdatedDate = DateTime.Now;
+               
             };
             _invoiceRepository.Add(invoice);
         }
@@ -61,7 +59,15 @@ namespace AppNET.App
                 throw new Exception("Güncellenmek istenen fatura bulunamadı.");
             return _invoiceRepository.Update(InvoiceNumber, newInvoice);
         }
-
+        public IReadOnlyCollection<Invoice> IncomeInvoice(Func<Invoice, bool> expression = null)
+        {
+            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Income).ToList().AsReadOnly();
         }
+        public IReadOnlyCollection<Invoice> OutcomeInvoice(Func<Invoice, bool> expression = null)
+        {
+            return _invoiceRepository.GetList().Where(x => x.typeOfProcess == TypeOfProcess.Outcome).ToList().AsReadOnly();
+        }
+
+    }
 }
 

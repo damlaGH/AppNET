@@ -2,6 +2,7 @@
 using AppNET.Domain.Entities;
 using AppNET.Infrastructure;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml.Linq;
 
 namespace AppNET.Presentation.WinForm
 {
@@ -116,43 +117,25 @@ namespace AppNET.Presentation.WinForm
        
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            if (button1.Text == "kaydet")
-            {
+        {      //al butonu ile ürünü kaydederken satın almış da oluyoruz.
+        
                 int id = Convert.ToInt32(txtProductId.Text); //Textbox daki değerler default olarak string olduğu için int e çevirdik çünkü Create metodu id yi int bekliyor
-                decimal price = Convert.ToDecimal(txtProductPrice.Text);
+                string name = txtProductName.Text;
                 int stock = Convert.ToInt32(txtProductStock.Text);
-                //int categoryId=Convert.ToInt32(txtCategoryId.Text);
-                // productService.Create(id, txtProductName.Text, price, stock, categoryId);
-                //cbbCategory.SelectedIndex = 0;
                 int selectedValue = Convert.ToInt32(cbbCategory.SelectedValue);
-                decimal buyPrice= Convert.ToDecimal(txtProductPrice);
-                decimal sellPrice = Convert.ToDecimal(txtProductPrice);
-                productService.Create(id, txtProductName.Text, price,stock,selectedValue,buyPrice,sellPrice);
+                decimal buyPrice= Convert.ToDecimal(txtProductBuyPrice);
+                decimal sellPrice = Convert.ToDecimal(txtProductBuyPrice);
 
-            }
-            else
-            {
-                int id = Convert.ToInt32(txtProductId.Text);
-                Product p = productService.GetAll().FirstOrDefault(x => x.Id == id);
-                p.Name = txtProductName.Text;
-                p.Stock = Convert.ToInt32(txtProductStock.Text);
-                p.Price = Convert.ToDecimal(txtProductPrice.Text);
-                p.CategoryId = Convert.ToInt32(cbbCategory.SelectedValue);
-                productService.Update(Convert.ToInt32(txtProductId.Text), p);
-            }
-            FillProductGrid();
+                productService.Create(id,name,stock,selectedValue,buyPrice,sellPrice);
+                shoppingService.BuyProduct(id, name, stock, buyPrice);
+
+                FillProductGrid();
                
-                button1.Text = "kaydet";
-                groupBox2.Text = "Yeni Ürün";
                 txtProductId.Enabled = true;
                 txtProductId.Text = "";
                 txtProductName.Text = "";
-                txtProductPrice.Text = "";
                 txtProductStock.Text = "";
                 cbbCategory.SelectedIndex = 0;
-
-
         }
 
         private void silToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -174,15 +157,37 @@ namespace AppNET.Presentation.WinForm
         {
             txtProductName.Text = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
             txtProductId.Text = grdProduct.CurrentRow.Cells["Id"].Value.ToString();
-            txtProductPrice.Text = grdProduct.CurrentRow.Cells["Price"].Value.ToString();
             txtProductStock.Text = grdProduct.CurrentRow.Cells["Stock"].Value.ToString();
            
             txtProductId.Enabled = false;
             button1.Text = "Güncelle";
             groupBox2.Text = "Ürünü Güncelle";
         }
+        private void satToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtProductId.Text = "";
+            txtProductBuyPrice.Text = "";
+            cbbCategory.SelectedValue = "";
+            int id = Convert.ToInt32(grdProduct.CurrentRow.Cells["Id"].Value);
+            string name = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
+            int stock = Convert.ToInt32(txtProductStock.Text);
+            decimal sellPrice= Convert.ToDecimal(txtProductSellPrice.Text);
+            shoppingService.SellProduct(id, name, stock, sellPrice);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            decimal balance = Convert.ToInt32(txtShowBalance.Text);
+            cashService.ShowBalance();             
 
-       
+            FillInvoiceGrid();
+
+            txtShowBalance.Text = "";
+            
+
+
+        }
+
+        
+    }
     }
     
-}

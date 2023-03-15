@@ -10,5 +10,6 @@ namespace AppNET.Domain.Entities
     {
         public decimal Balance { get; set; }
         public List<Invoice> Invoices { get; set; }
+
     }
 }

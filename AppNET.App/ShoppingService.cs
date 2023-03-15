@@ -43,9 +43,7 @@ namespace AppNET.App
                     stock * sellPrice,
                     $"{soldProduct.Id} id'li üründen {soldProduct.Stock} adet satıldı. Toplam tutar: {stock * sellPrice}",
                     TypeOfProcess.Outcome,
-                    DateTime.Now);
-               //burda oluşturulan invoice ve o da invoice repo ya kaydediliyor ??
-                            
+                    DateTime.Now);                       
             }
             else
                 throw new Exception("İşlem başarısız");
@@ -53,11 +51,12 @@ namespace AppNET.App
 
         public void BuyProduct(int id, string name, int stock, decimal buyPrice)
         {
+            
             Product buyProduct = new Product()
             {
                 Id = id,
                 Name = name,
-                Stock = stock,            //burayı her new ile türettiğimizde yazmamız gerekmiyor??
+                Stock = stock,           
                 BuyPrice = buyPrice,
 
             };
@@ -65,13 +64,13 @@ namespace AppNET.App
             buyProduct = _productsRepository.GetList().FirstOrDefault(p => p.Id == id);
             if (buyProduct != null)
             {
-                if (cashService.Balance() >= stock * buyPrice)
+                if (cashService.ShowBalance() >= stock * buyPrice)
                 {
                     buyProduct.Stock += buyProduct.Stock;
                     buyProduct.UpdatedDate = DateTime.Now;
                     invoiceService.Create(1,
                         stock * buyPrice,
-                        $"{buyProduct.Id} id'li üründen {buyProduct.Stock} adet satıldı. Toplam tutar: {stock * buyPrice}",
+                        $"{buyProduct.Id} id'li üründen {buyProduct.Stock} adet alındı. Toplam tutar: {stock * buyPrice}",
                         TypeOfProcess.Income,
                         DateTime.Now);
                 }
@@ -82,7 +81,8 @@ namespace AppNET.App
             else
             {
                 throw new Exception("Yeni ürün kaydı yapınız:");
-                //productService.Create(id,name,stock,categoryId,buyPrice,sellPrice);   categoryId ve sellPrice i olmadığı için hata veriyor??
+                productService.Create(id, name,stock, 1, buyPrice, 1); // categoryId ve sellPrice i almadığım için 1 verdim
+              
 
             }
         }

@@ -18,7 +18,7 @@ namespace AppNET.App
         {
             _productsRepository = IOCContainer.Resolve<IRepository<Product>>();  //product repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
         }
-        public void Create(int id, string name, decimal price, int stock, int categoryId, decimal buyPrice, decimal sellPrice)
+        public void Create(int id, string name, int stock, int categoryId, decimal buyPrice, decimal sellPrice)
         {
             if (id == null)
                 throw new ArgumentException("Id değeri boş olamaz");
@@ -28,13 +28,12 @@ namespace AppNET.App
             {
                 Id = id,
                 Name = name,
-                Price = price,
                 Stock = stock,
                 CategoryId = categoryId,
                 BuyPrice=buyPrice,
                 SellPrice=sellPrice,
                 CreatedDate = DateTime.Now
-                //UpdatedDate = DateTime.Now;
+                
             };
                _productsRepository.Add(product);
 
