@@ -23,6 +23,8 @@ namespace AppNET.App
             cashService = IOCContainer.Resolve<CashService>();
             productService = IOCContainer.Resolve<ProductService>();
             invoiceService = IOCContainer.Resolve<InvoiceService>();
+            
+
         }
         public void SellProduct(int id,string name, int stock, decimal sellPrice) //satılacak ürünün stoğu yerine adeti demek daha doğru ama product ın içinde piece olmadığı için stock dan ilerledim.
         {
