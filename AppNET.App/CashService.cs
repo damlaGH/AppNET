@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace AppNET.App
 {
-    public class CashService: ICashService
+        public class CashService: ICashService
          
-    {
-        private readonly InvoiceService invoiceService;
+        {
+            private readonly InvoiceService invoiceService;
+            public CashService()
+            {
+                invoiceService = IOCContainer.Resolve<InvoiceService>();
 
-        public CashService()
-        {
-            invoiceService = IOCContainer.Resolve<InvoiceService>();
-        }
-                
-        public decimal ShowBalance()
-        {
+            }
+
+            public decimal ShowBalance()
+            {
             return invoiceService.IncomeInvoice().Sum(i => i.TotalAmount) - invoiceService.OutcomeInvoice().Sum(e => e.TotalAmount);
-        }
+            }
 
-    }
+        }
 }
 
 
