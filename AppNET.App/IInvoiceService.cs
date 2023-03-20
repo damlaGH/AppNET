@@ -13,6 +13,11 @@ namespace AppNET.App
         bool Delete(int InvoiceNumber);
         IReadOnlyCollection<Invoice> GetAll();
         Invoice Update(int InvoiceNumber, Invoice newInvoice);
+
+        IReadOnlyCollection<Invoice> IncomeInvoice(Func<Invoice, bool> expression = null);
+        IReadOnlyCollection<Invoice> OutcomeInvoice(Func<Invoice, bool> expression = null);
+
+
     }
 }
 

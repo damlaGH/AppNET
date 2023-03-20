@@ -15,8 +15,8 @@ namespace AppNET.Presentation.WinForm
         ICategoryService categoryService = IOCContainer.Resolve<ICategoryService>();
         IProductService productService = IOCContainer.Resolve<IProductService>();
         IInvoiceService invoiceService = IOCContainer.Resolve<IInvoiceService>();
-        CashService cashService = IOCContainer.Resolve<CashService>();
-        ShoppingService shoppingService = IOCContainer.Resolve<ShoppingService>();
+        ICashService cashService = IOCContainer.Resolve<ICashService>();
+        IShoppingService shoppingService = IOCContainer.Resolve<IShoppingService>();
         private void FillCategoryGrid()
         {
             grdCategory.DataSource = categoryService.GetAll();
@@ -50,7 +50,7 @@ namespace AppNET.Presentation.WinForm
                 int id = Convert.ToInt32(txtCategoryId.Text); //Textbox daki değerler default olarak string olduğu için int e çevirdik çünkü Create metodu id yi int bekliyor
                 categoryService.Create(id, txtCategoryName.Text);
                 Product alreadyRegistered=productService.GetAll().FirstOrDefault(x => x.Id == id);
-                if(alreadyRegistered != null) 
+                if (alreadyRegistered != null)
                 {
                     MessageBox.Show($"{id} daha önce kaydedilmiş, lütfen yeni id değeri giriniz.");
                 }
@@ -87,19 +87,25 @@ namespace AppNET.Presentation.WinForm
             #region Ürün Silinmesi
             if (data.Count()> 0)
             {
-                bool s =productService.Delete(categoryId);
+                productService.DeleteProductsByCategory(categoryId);
                 FillProductGrid();
             }
             #endregion
+
+
 
             #region Kategori Silinmesi
             bool x = categoryService.Delete(categoryId);
             FillCategoryGrid();
             FillCategoryCbb();
-            #endregion 
+            #endregion
 
-            
-          
+            txtProductId.Enabled = true;
+            txtProductId.Text = "";
+            txtProductName.Text = "";
+            txtProductStock.Text = "";
+            cbbCategory.SelectedIndex = 0;
+
         }
 
         private void düzenleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,8 +129,8 @@ namespace AppNET.Presentation.WinForm
                 string name = txtProductName.Text;
                 int stock = Convert.ToInt32(txtProductStock.Text);
                 int selectedValue = Convert.ToInt32(cbbCategory.SelectedValue);
-                decimal buyPrice= Convert.ToDecimal(txtProductBuyPrice);
-                decimal sellPrice = Convert.ToDecimal(txtProductBuyPrice);
+                decimal buyPrice= Convert.ToDecimal(txtProductBuyPrice.Text);
+                decimal sellPrice = Convert.ToDecimal(txtProductSellPrice.Text);
 
                 productService.Create(id,name,stock,selectedValue,buyPrice,sellPrice);
                 shoppingService.BuyProduct(id, name, stock, buyPrice);
@@ -158,22 +164,23 @@ namespace AppNET.Presentation.WinForm
             txtProductName.Text = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
             txtProductId.Text = grdProduct.CurrentRow.Cells["Id"].Value.ToString();
             txtProductStock.Text = grdProduct.CurrentRow.Cells["Stock"].Value.ToString();
-           
+            txtProductBuyPrice.Text= grdProduct.CurrentRow.Cells["BuyPrice"].Value.ToString();
+            txtProductSellPrice.Text = grdProduct.CurrentRow.Cells["SellPrice"].Value.ToString();
             txtProductId.Enabled = false;
-            button1.Text = "Güncelle";
-            groupBox2.Text = "Ürünü Güncelle";
+           
         }
         private void satToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            txtProductId.Text = "";
+            
             txtProductBuyPrice.Text = "";
             cbbCategory.SelectedValue = "";
             int id = Convert.ToInt32(grdProduct.CurrentRow.Cells["Id"].Value);
             string name = grdProduct.CurrentRow.Cells["Name"].Value.ToString();
-            int stock = Convert.ToInt32(txtProductStock.Text);
-            decimal sellPrice= Convert.ToDecimal(txtProductSellPrice.Text);
+            int stock= Convert.ToInt32(grdProduct.CurrentRow.Cells["Stock"].Value);
+            decimal sellPrice= Convert.ToDecimal(grdProduct.CurrentRow.Cells["SellPrice"].Value);
             shoppingService.SellProduct(id, name, stock, sellPrice);
         }
+        
         private void button2_Click(object sender, EventArgs e)
         {
             decimal balance = Convert.ToInt32(txtShowBalance.Text);

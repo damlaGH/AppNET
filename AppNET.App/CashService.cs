@@ -13,16 +13,16 @@ namespace AppNET.App
         public class CashService: ICashService
          
         {
-            private readonly InvoiceService invoiceService;
+            private readonly IInvoiceService invoiceService;
             public CashService()
             {
-                invoiceService = IOCContainer.Resolve<InvoiceService>();
+                invoiceService = IOCContainer.Resolve<IInvoiceService>();
 
             }
 
             public decimal ShowBalance()
             {
-            return invoiceService.IncomeInvoice().Sum(i => i.TotalAmount) - invoiceService.OutcomeInvoice().Sum(e => e.TotalAmount);
+            return 1000+(invoiceService.IncomeInvoice().Sum(i => i.TotalAmount) - invoiceService.OutcomeInvoice().Sum(e => e.TotalAmount));
             }
 
         }

@@ -42,12 +42,8 @@ namespace AppNET.App
             IOCContainer.Register<IInvoiceService>(() => new InvoiceService());
             IOCContainer.Register<ICashService>(() => new CashService());
             IOCContainer.Register<ILogService>(() => new LogService());
-            IOCContainer.Register<CashService>(() => new CashService());
-            IOCContainer.Register<InvoiceService>(() => new InvoiceService());
-            IOCContainer.Register<ShoppingService>(() => new ShoppingService());
-            IOCContainer.Register<LogService>(() => new LogService());
-            IOCContainer.Register<CategoryService>(() => new CategoryService());
-            IOCContainer.Register<ProductService>(() => new ProductService());
+            IOCContainer.Register<IShoppingService>(() => new ShoppingService());
+            
             //  public static IRepository<Category> Metot()
             //{
             //    return new TextFileRepository<Category>();

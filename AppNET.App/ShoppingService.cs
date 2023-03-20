@@ -11,22 +11,22 @@ using System.Xml.Linq;
 
 namespace AppNET.App
 {
-    public class ShoppingService
+    public class ShoppingService : IShoppingService
     {
         private readonly IRepository<Product> _productsRepository;
-        private readonly CashService cashService;
-        private readonly ProductService productService;
-        private readonly InvoiceService invoiceService;
-        public ShoppingService() 
+        private readonly ICashService cashService;
+        private readonly IProductService productService;
+        private readonly IInvoiceService invoiceService;
+        public ShoppingService()
         {
             _productsRepository = IOCContainer.Resolve<IRepository<Product>>();
-            cashService = IOCContainer.Resolve<CashService>();
-            productService = IOCContainer.Resolve<ProductService>();
-            invoiceService = IOCContainer.Resolve<InvoiceService>();
-            
+            cashService = IOCContainer.Resolve<ICashService>();
+            productService = IOCContainer.Resolve<IProductService>();
+            invoiceService = IOCContainer.Resolve<IInvoiceService>();
+
 
         }
-        public void SellProduct(int id,string name, int stock, decimal sellPrice) //satılacak ürünün stoğu yerine adeti demek daha doğru ama product ın içinde piece olmadığı için stock dan ilerledim.
+        public void SellProduct(int id, string name, int stock, decimal sellPrice) //satılacak ürünün stoğu yerine adeti demek daha doğru ama product ın içinde piece olmadığı için stock dan ilerledim.
         {
             Product soldProduct = new Product()
             {
@@ -34,7 +34,7 @@ namespace AppNET.App
                 Name = name,
                 Stock = stock,
                 SellPrice = sellPrice,
-              
+
             };
             if (StockControlForSale(id, stock))
             {
@@ -45,7 +45,7 @@ namespace AppNET.App
                     stock * sellPrice,
                     $"{soldProduct.Id} id'li üründen {soldProduct.Stock} adet satıldı. Toplam tutar: {stock * sellPrice}",
                     TypeOfProcess.Outcome,
-                    DateTime.Now);                       
+                    DateTime.Now);
             }
             else
                 throw new Exception("İşlem başarısız");
@@ -53,12 +53,12 @@ namespace AppNET.App
 
         public void BuyProduct(int id, string name, int stock, decimal buyPrice)
         {
-            
+
             Product buyProduct = new Product()
             {
                 Id = id,
                 Name = name,
-                Stock = stock,           
+                Stock = stock,
                 BuyPrice = buyPrice,
 
             };
@@ -83,8 +83,8 @@ namespace AppNET.App
             else
             {
                 throw new Exception("Yeni ürün kaydı yapınız:");
-                productService.Create(id, name,stock, 1, buyPrice, 1); // categoryId ve sellPrice i almadığım için 1 verdim
-              
+                productService.Create(id, name, stock, 1, buyPrice, 1); // categoryId ve sellPrice i almadığım için 1 verdim
+
 
             }
         }
@@ -92,8 +92,8 @@ namespace AppNET.App
         public bool StockControlForSale(int id, int sellAmount)
         {
             Product controlProduct = new Product();
-           
-            controlProduct=_productsRepository.GetList().FirstOrDefault(p=>p.Id == id);
+
+            controlProduct = _productsRepository.GetList().FirstOrDefault(p => p.Id == id);
             if (sellAmount > controlProduct.Stock)
             {
                 throw new Exception($"Stokta {controlProduct.Stock} kadar ürün vardır");
@@ -103,6 +103,6 @@ namespace AppNET.App
                 return true;
         }
 
-       
+
     }
 }
