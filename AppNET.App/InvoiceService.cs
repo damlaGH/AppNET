@@ -1,6 +1,7 @@
 ﻿using AppNET.Domain.Entities;
 using AppNET.Domain.Interfaces;
 using AppNET.Infrastructure;
+using AppNET.Infrastructure.LogToTxt;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,16 +17,18 @@ namespace AppNET.App
     public class InvoiceService : IInvoiceService
     {
         private readonly IRepository<Invoice> _invoiceRepository;
+        private ILogger logger;
 
         public InvoiceService()
         {
             _invoiceRepository = IOCContainer.Resolve<IRepository<Invoice>>();
+             logger= IOCContainer.Resolve<ILogger>();
         }
        
         public void Create(int invoiceNumber, decimal totalAmount, string explanation, TypeOfProcess process, DateTime dateTime)
         {
             if (invoiceNumber == null)
-                throw new Exception("Fatura numarası boş olamaz");
+               logger.Error("Fatura numarası boş olamaz");
             
             Invoice invoice = new Invoice()
             {
@@ -37,7 +40,9 @@ namespace AppNET.App
                
             };
             _invoiceRepository.Add(invoice);
+            logger.Info("Yeni fatura oluşturuldu.");
         }
+       
 
 
         public bool Delete(int InvoiceNumber)

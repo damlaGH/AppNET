@@ -141,7 +141,9 @@ namespace AppNET.Presentation.WinForm
                 txtProductId.Text = "";
                 txtProductName.Text = "";
                 txtProductStock.Text = "";
-                cbbCategory.SelectedIndex = 0;
+                txtProductBuyPrice.Text = "";
+                txtProductSellPrice.Text = "";
+            cbbCategory.SelectedIndex = 0;
         }
 
         private void silToolStripMenuItem1_Click(object sender, EventArgs e)

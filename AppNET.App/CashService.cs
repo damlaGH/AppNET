@@ -14,9 +14,11 @@ namespace AppNET.App
          
         {
             private readonly IInvoiceService invoiceService;
+           
             public CashService()
             {
                 invoiceService = IOCContainer.Resolve<IInvoiceService>();
+               
 
             }
 

@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Domain", "AppNET.Domain\AppNET.Domain.csproj", "{FA0F6C48-2FCE-4C3F-8499-A443E3FC5810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.Domain", "AppNET.Domain\AppNET.Domain.csproj", "{FA0F6C48-2FCE-4C3F-8499-A443E3FC5810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Infrastructure", "AppNET.Infrastructure\AppNET.Infrastructure.csproj", "{DBAAFC68-A04E-4F3C-AD6E-C80B7FF0F546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.Infrastructure", "AppNET.Infrastructure\AppNET.Infrastructure.csproj", "{DBAAFC68-A04E-4F3C-AD6E-C80B7FF0F546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Infrastructure.EFCore", "AppNET.Infrastructure.EFCore\AppNET.Infrastructure.EFCore.csproj", "{42917EC2-2F17-4CB2-A7A8-1B2BC8CF02DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.Infrastructure.EFCore", "AppNET.Infrastructure.EFCore\AppNET.Infrastructure.EFCore.csproj", "{42917EC2-2F17-4CB2-A7A8-1B2BC8CF02DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Infrastructure.IOToTXT", "AppNET.Infrastructure.IOToTXT\AppNET.Infrastructure.IOToTXT.csproj", "{3AD2FDBE-3149-4951-86C7-955EDFE1FDF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.Infrastructure.IOToTXT", "AppNET.Infrastructure.IOToTXT\AppNET.Infrastructure.IOToTXT.csproj", "{3AD2FDBE-3149-4951-86C7-955EDFE1FDF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.App", "AppNET.App\AppNET.App.csproj", "{E955086B-E717-4BFC-8494-0072DFAF107E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.App", "AppNET.App\AppNET.App.csproj", "{E955086B-E717-4BFC-8494-0072DFAF107E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Presentation.WinForm", "AppNET.Presentation.WinForm\AppNET.Presentation.WinForm.csproj", "{6AD1E4E7-627B-4EA2-A002-C9CF00E30EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppNET.Presentation.WinForm", "AppNET.Presentation.WinForm\AppNET.Presentation.WinForm.csproj", "{6AD1E4E7-627B-4EA2-A002-C9CF00E30EFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNET.Infrastructure.LogToTxt", "AppNET.Infrastructure.LogToTxt\AppNET.Infrastructure.LogToTxt.csproj", "{2AC82CDF-2054-44A3-BFA6-7A8D2C9A2C8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{6AD1E4E7-627B-4EA2-A002-C9CF00E30EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD1E4E7-627B-4EA2-A002-C9CF00E30EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD1E4E7-627B-4EA2-A002-C9CF00E30EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC82CDF-2054-44A3-BFA6-7A8D2C9A2C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC82CDF-2054-44A3-BFA6-7A8D2C9A2C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC82CDF-2054-44A3-BFA6-7A8D2C9A2C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC82CDF-2054-44A3-BFA6-7A8D2C9A2C8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

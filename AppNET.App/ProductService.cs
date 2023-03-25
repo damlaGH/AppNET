@@ -14,11 +14,11 @@ namespace AppNET.App
     {
 
         private readonly IRepository<Product> _productsRepository;
-        private readonly ILogService logService;
+        private ILogger logger;
         public ProductService()
         {
             _productsRepository = IOCContainer.Resolve<IRepository<Product>>();  //product repository sine IOCContainerdaki resolve metodu ile kaydettiğimiz her şeyi yüklemiş olduk.
-            logService = IOCContainer.Resolve<ILogService>();
+            logger = IOCContainer.Resolve<ILogger>();
         }
         public void Create(int id, string name, int stock, int categoryId, decimal buyPrice, decimal sellPrice)
         {
@@ -69,7 +69,7 @@ namespace AppNET.App
             foreach (var item in list)
             {
                 _productsRepository.Remove(item.Id);
-                logService.InfoLog("BİLGİ : ÜRÜN SİLİNDİ.");
+                logger.Info("Ürün silindi.");
             }
 
             return true;
