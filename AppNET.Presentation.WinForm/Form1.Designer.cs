@@ -60,9 +60,11 @@
             this.grdProduct = new System.Windows.Forms.DataGridView();
             this.grdShopping = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.txtShowBalance = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCategory)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -166,6 +168,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.txtSupplierId);
             this.groupBox2.Controls.Add(this.txtProductSellPrice);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label9);
@@ -361,6 +365,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Kasa İşlemleri";
             // 
+            // button2
+            // 
+            this.button2.ContextMenuStrip = this.contextMenuStrip2;
+            this.button2.Location = new System.Drawing.Point(139, 169);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "getir";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // txtShowBalance
             // 
             this.txtShowBalance.Location = new System.Drawing.Point(139, 32);
@@ -377,15 +391,21 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "Bakiye";
             // 
-            // button2
+            // txtSupplierId
             // 
-            this.button2.ContextMenuStrip = this.contextMenuStrip2;
-            this.button2.Location = new System.Drawing.Point(139, 169);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "getir";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtSupplierId.Location = new System.Drawing.Point(332, 94);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.Size = new System.Drawing.Size(100, 23);
+            this.txtSupplierId.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(264, 97);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 15);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "supplierId";
             // 
             // Form1
             // 
@@ -453,5 +473,7 @@
         private Label label6;
         private ToolStripMenuItem satToolStripMenuItem;
         private Button button2;
+        private Label label8;
+        private TextBox txtSupplierId;
     }
 }

@@ -83,7 +83,7 @@ namespace AppNET.App
             else
             {
                 throw new Exception("Yeni ürün kaydı yapınız:");
-                productService.Create(id, name, stock, 1, buyPrice, 1); // categoryId ve sellPrice i almadığım için 1 verdim
+                productService.Create(id, name, stock, 1, buyPrice, 1,1); // categoryId, sellPrice ve supplierId i almadığım için 1 verdim
 
 
             }

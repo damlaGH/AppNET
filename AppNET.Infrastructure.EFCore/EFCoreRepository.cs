@@ -1,35 +1,58 @@
 ﻿using AppNET.Domain.Entities;
 using AppNET.Domain.Entities.Base;
 using AppNET.Domain.Interfaces;
+using System.Collections.Generic;
 
 namespace AppNET.Infrastructure.EFCore
 {
     public class EFCoreRepository<T>: IRepository<T> where T : BaseEntity
-    {
+    {  
+
+        AppNETdbContext context=new AppNETdbContext();
         
         public T Add(T entity)
         {
-            throw new NotImplementedException();
+            context.Add(entity);
+
+            return entity;
         }
+
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+           return context.Set<T>().Find(id);
+        
         }
 
-        public ICollection<T> GetList(Func<T, bool> expression = null)
+        public ICollection<T> GetList(Func<T, bool> expression = null) //expression funct. dır
         {
-            throw new NotImplementedException();
-        }
 
+            if (expression == null)
+                return context.Set<T>().ToList();
+            else
+                return context.Set<T>().Where<T>(expression).ToList();
+        }
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            context.Remove(id);
+            return false;
+        }
+
+        public bool Remove(T entity)
+        {
+            context.Remove<T>(entity);
+            context.SaveChanges();
+            return true;
         }
 
         public T Update(int id, T entity)
         {
-            throw new NotImplementedException();
+            if (id != entity.Id)
+                throw new ArgumentException("ID değerleri uyuşmuyor");
+
+            context.Update(entity);
+            return entity;
+                    
         }
     }
 }

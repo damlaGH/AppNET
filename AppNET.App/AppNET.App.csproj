@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppNET.Domain\AppNET.Domain.csproj" />
+    <ProjectReference Include="..\AppNET.Infrastructure.EFCore\AppNET.Infrastructure.EFCore.csproj" />
     <ProjectReference Include="..\AppNET.Infrastructure.IOToTXT\AppNET.Infrastructure.IOToTXT.csproj" />
     <ProjectReference Include="..\AppNET.Infrastructure.LogToTxt\AppNET.Infrastructure.LogToTxt.csproj" />
     <ProjectReference Include="..\AppNET.Infrastructure\AppNET.Infrastructure.csproj" />

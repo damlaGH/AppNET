@@ -9,6 +9,6 @@ namespace AppNET.Domain.Entities.Base
     public abstract class AuditEntity:BaseEntity
     {
         public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

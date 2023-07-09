@@ -15,6 +15,7 @@ namespace AppNET.Domain.Entities
         public TypeOfProcess  typeOfProcess  { get; set; }
         public DateTime dateTime { get; set; } = DateTime.Now;
 
-       
+        public Order Order { get; set; }
+
     }
 }

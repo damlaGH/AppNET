@@ -74,6 +74,19 @@ namespace AppNET.Infrastructure.IOToTXT
 
         }
 
+        public bool Remove(T entity)
+        {
+            LoadListFromFile();
+            if (entity != null)
+            {
+                list.Remove(entity);
+                WriteListToTxt();
+                return true;
+            }
+            return false;
+          
+        }
+
         public T Update(int id, T entity)
         {
             if (id!= entity.Id)

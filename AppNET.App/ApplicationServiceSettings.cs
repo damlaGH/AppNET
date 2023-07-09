@@ -1,5 +1,5 @@
 ﻿using AppNET.Domain.Entities;
-
+using AppNET.Infrastructure.EFCore;
 using AppNET.Domain.Interfaces;
 using AppNET.Infrastructure;
 
@@ -33,9 +33,18 @@ namespace AppNET.App
             //transient service:nesneye her erişmek istediğimizde her seferinde yeniden oluşturulur. bu container ve method injection ile 
             
             // IOCContainer.Register<IRepository<Category>>(Metot); //TextFileRepository i parametre olarak alamadığımız için bir metot oluşturduk 
-            IOCContainer.Register<IRepository<Category>>(() => new TextFileRepository<Category>());
-            IOCContainer.Register<IRepository<Product>>(() => new TextFileRepository<Product>());
-            IOCContainer.Register<IRepository<Invoice>>(() => new TextFileRepository<Invoice>());
+            IOCContainer.Register<IRepository<Category>>(() => new EFCoreRepository<Category>());
+            IOCContainer.Register<IRepository<Product>>(() => new EFCoreRepository<Product>());
+            IOCContainer.Register<IRepository<Invoice>>(() => new EFCoreRepository<Invoice>());
+            IOCContainer.Register<IRepository<Customer>>(() => new EFCoreRepository<Customer>());
+            IOCContainer.Register<IRepository<Cash>>(() => new EFCoreRepository<Cash>());
+            IOCContainer.Register<IRepository<CustomerAddress>>(() => new EFCoreRepository<CustomerAddress>());
+            IOCContainer.Register<IRepository<Log>>(() => new EFCoreRepository<Log>());
+            IOCContainer.Register<IRepository<Order>>(() => new EFCoreRepository<Order>());
+            IOCContainer.Register<IRepository<OrderDetails>>(() => new EFCoreRepository<OrderDetails>());
+            IOCContainer.Register<IRepository<Shipper>>(() => new EFCoreRepository<Shipper>());
+            IOCContainer.Register<IRepository<Supplier>>(() => new EFCoreRepository<Supplier>());
+           
 
             IOCContainer.Register<ILogger>(()=> new Logger());
             IOCContainer.Register<ICategoryService>(() => new CategoryService());
@@ -43,7 +52,10 @@ namespace AppNET.App
             IOCContainer.Register<IInvoiceService>(() => new InvoiceService());
             IOCContainer.Register<ICashService>(() => new CashService());
             IOCContainer.Register<IShoppingService>(() => new ShoppingService());
-            
+            IOCContainer.Register<ICustomerService>(() => new CustomerService());
+            IOCContainer.Register<ICustomerAdressService>(() => new CustomerAdressService());
+            IOCContainer.Register<IOrderService>(() => new OrderService());
+
             //  public static IRepository<Category> Metot()
             //{
             //    return new TextFileRepository<Category>();

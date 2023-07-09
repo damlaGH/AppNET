@@ -131,8 +131,9 @@ namespace AppNET.Presentation.WinForm
                 int selectedValue = Convert.ToInt32(cbbCategory.SelectedValue);
                 decimal buyPrice= Convert.ToDecimal(txtProductBuyPrice.Text);
                 decimal sellPrice = Convert.ToDecimal(txtProductSellPrice.Text);
+                int supplierId = Convert.ToInt32(txtSupplierId.Text);
 
-                productService.Create(id,name,stock,selectedValue,buyPrice,sellPrice);
+            productService.Create(id,name,stock,selectedValue,buyPrice,sellPrice, supplierId);
                 shoppingService.BuyProduct(id, name, stock, buyPrice);
 
                 FillProductGrid();
@@ -143,6 +144,7 @@ namespace AppNET.Presentation.WinForm
                 txtProductStock.Text = "";
                 txtProductBuyPrice.Text = "";
                 txtProductSellPrice.Text = "";
+                txtSupplierId.Text = "";
             cbbCategory.SelectedIndex = 0;
         }
 
@@ -196,7 +198,7 @@ namespace AppNET.Presentation.WinForm
 
         }
 
-        
+       
     }
     }
     

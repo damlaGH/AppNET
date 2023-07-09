@@ -9,7 +9,7 @@ namespace AppNET.App
 {
     public interface IProductService
     {
-        void Create(int id, string name,int stock, int categoryId,decimal buyPrice, decimal sellPrice);      
+        void Create(int id, string name,int stock, int categoryId,decimal buyPrice, decimal sellPrice, int supplierId);      
         bool Delete(int productId);
         bool DeleteProductsByCategory(int categoryId);
         IReadOnlyCollection<Product> GetAll();

@@ -13,6 +13,8 @@ namespace AppNET.Domain.Interfaces
         T Add(T entity);
         bool Remove(int id);
 
+        bool Remove(T entity);
+
         T GetById(int id);
 
         ICollection<T> GetList(Func<T, bool> expression = null);  //burda linq query si kullanabiliriz ya da T tipinde değerle çalışmış oluruz.
